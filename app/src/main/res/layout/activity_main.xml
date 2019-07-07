@@ -9,23 +9,23 @@
 
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/reyclerview"
+        android:studentid="@+studentid/reyclerview"
         android:layout_width="match_parent"
         android:layout_margin="10dp"
-        android:layout_above="@+id/search"
+        android:layout_above="@+studentid/search"
         android:layout_height="match_parent"/>
 
 
     <Button
-        android:id="@+id/search"
+        android:studentid="@+studentid/search"
         android:text="Search Student"
         android:onClick="gotosearch"
-        android:layout_above="@+id/b"
+        android:layout_above="@+studentid/b"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <Button
-        android:id="@+id/b"
+        android:studentid="@+studentid/b"
         android:text="Add Student"
         android:onClick="gotoaddstudent"
         android:layout_alignParentBottom="true"

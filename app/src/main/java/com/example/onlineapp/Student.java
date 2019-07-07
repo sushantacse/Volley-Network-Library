@@ -3,12 +3,14 @@ package com.example.onlineapp;
 public class Student {
 
     private String id;
+    private String studentid;
     private String name;
     private String email;
     private String phoneno;
 
-    public Student(String id, String name, String email, String phoneno) {
+    public Student(String id, String studentid, String name, String email, String phoneno) {
         this.id = id;
+        this.studentid = studentid;
         this.name = name;
         this.email = email;
         this.phoneno = phoneno;
@@ -20,6 +22,14 @@ public class Student {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getStudentid() {
+        return studentid;
+    }
+
+    public void setStudentid(String studentid) {
+        this.studentid = studentid;
     }
 
     public String getName() {

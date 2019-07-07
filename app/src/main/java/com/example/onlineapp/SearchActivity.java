@@ -77,6 +77,7 @@ public class SearchActivity extends AppCompatActivity {
                     {
                         JSONObject object = jsonArray.getJSONObject(i);
                         students.add(new Student(
+                                object.getString("id"),
                                 object.getString("student_id"),
                                 object.getString("name"),
                                 object.getString("email"),
