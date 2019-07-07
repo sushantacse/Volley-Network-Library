@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
@@ -48,28 +50,30 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(JSONArray response)
             {
-
                 for (int i = 0; i < response.length(); i++)
+            {
+                try
                 {
-                    try
-                    {
-                        JSONObject object = response.getJSONObject(i);
-                        students.add(new Student(
+                    JSONObject object = response.getJSONObject(i);
 
-                                object.getString("student_id"),
-                                object.getString("name"),
-                                object.getString("email"),
-                                object.getString("phone")
-                        ));
+                    students.add(new Student(
 
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
+                            object.getString("student_id"),
+                            object.getString("name"),
+                            object.getString("email"),
+                            object.getString("phone")
+                    ));
+
+                    adapter = new StudentAdapter(students,MainActivity.this);
+                    recyclerView.setAdapter(adapter);
+                    adapter.notifyDataSetChanged();
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
+            }
 
-                adapter = new StudentAdapter(students,MainActivity.this);
-                recyclerView.setAdapter(adapter);
-                adapter.notifyDataSetChanged();
+
 
             }
         }, new Response.ErrorListener() {
@@ -85,5 +89,12 @@ public class MainActivity extends AppCompatActivity {
         queue.add(jsonArrayRequest);
 
     }
+
+    public void gotosearch(View view) {
+
+        startActivity(new Intent(getApplicationContext(),SearchActivity.class));
+    }
+
+
 
 }
