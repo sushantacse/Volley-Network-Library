@@ -96,5 +96,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    public void gotoaddstudent(View view) {
 
+        startActivity(new Intent(getApplicationContext(),AddActivity.class));
+    }
 }
