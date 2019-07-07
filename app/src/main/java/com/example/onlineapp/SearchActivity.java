@@ -36,7 +36,7 @@ public class SearchActivity extends AppCompatActivity {
     private StudentAdapter adapter;
     private LinearLayoutManager layoutManager;
     private List<Student> students;
-    private String url = "http://192.168.43.230/myfirstproject/searchstudent.php";
+    private String url = ApiUrl.SEARCH_URL;
     private TextView warning;
 
     @Override

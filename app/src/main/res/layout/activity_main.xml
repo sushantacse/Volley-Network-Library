@@ -12,10 +12,12 @@
         android:id="@+id/reyclerview"
         android:layout_width="match_parent"
         android:layout_margin="10dp"
-        android:layout_height="wrap_content"/>
+        android:layout_above="@+id/search"
+        android:layout_height="match_parent"/>
 
 
     <Button
+        android:id="@+id/search"
         android:text="Search Student"
         android:onClick="gotosearch"
         android:layout_above="@+id/b"

@@ -3,6 +3,7 @@ package com.example.onlineapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -27,12 +28,13 @@ public class AddActivity extends AppCompatActivity {
 
     private EditText studentid,name,email,phone;
     private Button addstudent;
-    String url = "http://192.168.43.157/myfirstproject/addstudent.php";
+    String url = ApiUrl.SEND_URL;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         studentid = findViewById(R.id.student_id);
         name = findViewById(R.id.student_name);
@@ -62,6 +64,10 @@ public class AddActivity extends AppCompatActivity {
                     String code = jsonObject.getString("code");
                     String message = jsonObject.getString("message");
                     Toast.makeText(AddActivity.this, code+"\n\n"+message, Toast.LENGTH_SHORT).show();
+                    studentid.setText("");
+                    name.setText("");
+                    email.setText("");
+                    phone.setText("");
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -91,5 +97,18 @@ public class AddActivity extends AppCompatActivity {
         RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
         queue.add(stringRequest);
 
+    }
+
+    // using this method to call  back to go to previus activity
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId())
+        {
+            case android.R.id.home:
+                finish();
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

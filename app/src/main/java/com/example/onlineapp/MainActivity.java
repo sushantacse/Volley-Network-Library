@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private StudentAdapter adapter;
     private LinearLayoutManager layoutManager;
     private List<Student> students;
-    private String url = "http://192.168.43.230/myfirstproject/readstudent.php";
+    private String url = ApiUrl.READ_URL;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
