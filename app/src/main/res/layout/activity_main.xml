@@ -18,6 +18,14 @@
     <Button
         android:text="Search Student"
         android:onClick="gotosearch"
+        android:layout_above="@+id/b"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/b"
+        android:text="Add Student"
+        android:onClick="gotoaddstudent"
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
