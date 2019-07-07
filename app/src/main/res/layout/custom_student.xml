@@ -8,7 +8,7 @@
 
 
     <TextView
-        android:studentid="@+studentid/studentid"
+        android:id="@+id/studentid"
         android:layout_width="match_parent"
         android:textSize="17sp"
         android:textAlignment="center"
@@ -16,7 +16,7 @@
         android:layout_height="wrap_content" />
 
         <TextView
-            android:studentid="@+studentid/name"
+            android:id="@+id/name"
             android:layout_width="match_parent"
             android:textSize="20sp"
             android:textAlignment="center"
@@ -27,7 +27,7 @@
 
 
         <TextView
-            android:studentid="@+studentid/email"
+            android:id="@+id/email"
             android:layout_width="match_parent"
             android:textSize="17sp"
             android:textAlignment="center"
@@ -35,7 +35,7 @@
             android:layout_height="wrap_content" />
 
     <TextView
-        android:studentid="@+studentid/phone"
+        android:id="@+id/phone"
         android:layout_width="match_parent"
         android:textSize="17sp"
         android:textAlignment="center"

@@ -6,13 +6,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
@@ -46,34 +49,40 @@ public class MainActivity extends AppCompatActivity {
     public void CourseDatabase()
     {
 
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(url, new Response.Listener<JSONArray>() {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
-            public void onResponse(JSONArray response)
-            {
-                for (int i = 0; i < response.length(); i++)
-            {
-                try
-                {
-                    JSONObject object = response.getJSONObject(i);
+            public void onResponse(String response) {
+                Log.d("serverRsp",response);
+                try {
 
-                    students.add(new Student(
+                    JSONArray jsonArray = new JSONArray(response);
+                    if (jsonArray.length() == 0)
+                    {
+                        Toast.makeText(MainActivity.this, "No data Found", Toast.LENGTH_SHORT).show();
 
-                            object.getString("id"),
-                            object.getString("student_id"),
-                            object.getString("name"),
-                            object.getString("email"),
-                            object.getString("phone")
-                    ));
+                    }
+                    for (int i = 0; i < jsonArray.length(); i++)
+                    {
+                        JSONObject object = jsonArray.getJSONObject(i);
+                        students.add(new Student(
+                                object.getString("id"),
+                                object.getString("student_id"),
+                                object.getString("name"),
+                                object.getString("email"),
+                                object.getString("phone")
+                        ));
+
+
+                    }
 
                     adapter = new StudentAdapter(students,MainActivity.this);
                     recyclerView.setAdapter(adapter);
                     adapter.notifyDataSetChanged();
 
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-            }
-
 
 
             }
@@ -87,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
-        queue.add(jsonArrayRequest);
+        queue.add(stringRequest);
 
     }
 

@@ -90,7 +90,7 @@ public class StudentDetailsActivity extends AppCompatActivity {
             protected Map<String, String> getParams() throws AuthFailureError {
 
                 Map<String, String> map = new HashMap<>();
-                map.put("id", id);
+                map.put("id",id);
                 return map;
 
             }

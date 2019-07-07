@@ -9,21 +9,21 @@
     
     
     <EditText
-        android:studentid="@+studentid/edittext"
         android:layout_width="match_parent"
+        android:id="@+id/edittext"
         android:hint="search student here"
         android:layout_height="wrap_content" />
     
     <Button
         android:layout_width="150dp"
-        android:studentid="@+studentid/searchbutton"
+        android:id="@+id/searchbutton"
         android:text="Search Student"
         android:layout_gravity="center"
         android:layout_height="wrap_content" />
 
 
     <TextView
-        android:studentid="@+studentid/data"
+        android:id="@+id/data"
         android:visibility="gone"
         android:text="NO DATA FOUND"
         android:textAlignment="center"
@@ -31,7 +31,7 @@
         android:layout_height="wrap_content" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:studentid="@+studentid/reyclerview"
+        android:id="@+id/reyclerview"
         android:layout_width="match_parent"
         android:layout_margin="10dp"
         android:layout_height="wrap_content"/>
