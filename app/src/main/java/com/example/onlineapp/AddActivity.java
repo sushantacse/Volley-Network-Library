@@ -2,6 +2,7 @@ package com.example.onlineapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -68,6 +69,7 @@ public class AddActivity extends AppCompatActivity {
                     name.setText("");
                     email.setText("");
                     phone.setText("");
+                    startActivity(new Intent(AddActivity.this, MainActivity.class));
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -111,4 +113,6 @@ public class AddActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
 }

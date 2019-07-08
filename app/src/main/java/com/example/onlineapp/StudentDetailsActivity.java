@@ -2,9 +2,13 @@ package com.example.onlineapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,6 +32,11 @@ public class StudentDetailsActivity extends AppCompatActivity {
     private TextView stdid,stdname,stdemail,stdphone;
     private Button delete;
     private String id,studentid,name,email,phone;
+
+    private EditText std_id,std_name,std_email,std_phone;
+    private Button updatestudent;
+    private LinearLayout linearLayout;
+    private Button showUpdatePanel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,13 +67,47 @@ public class StudentDetailsActivity extends AppCompatActivity {
                 deleteservercall();
             }
         });
+
+        std_id = findViewById(R.id.student_id);
+        std_name = findViewById(R.id.student_name);
+        std_email = findViewById(R.id.student_email);
+        std_phone = findViewById(R.id.student_phone);
+        updatestudent = findViewById(R.id.updatestudent);
+
+        std_id.setText(studentid);
+        std_name.setText(name);
+        std_email.setText(email);
+        std_phone.setText(phone);
+
+        updatestudent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                updateservercall();
+
+            }
+        });
+
+        linearLayout = findViewById(R.id.linearlayout);
+        showUpdatePanel = findViewById(R.id.showupdate);
+        showUpdatePanel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                linearLayout.setVisibility(View.VISIBLE);
+            }
+        });
+
+
     }
 
-    private void deleteservercall() {
+    private void updateservercall() {
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, ApiUrl.DELETE_URL, new Response.Listener<String>() {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, ApiUrl.UPDATE_URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
+
+                Log.d("Abirresponse",response);
 
                 try
                 {
@@ -73,6 +116,57 @@ public class StudentDetailsActivity extends AppCompatActivity {
                     String code = jsonObject.getString("code");
                     String message = jsonObject.getString("message");
                     Toast.makeText(StudentDetailsActivity.this, code+"\n\n"+message, Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(StudentDetailsActivity.this, MainActivity.class));
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(StudentDetailsActivity.this, "Error for "+error, Toast.LENGTH_SHORT).show();
+            }
+        }){
+
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+
+                Map<String, String> map = new HashMap<>();
+                map.put("id",id);
+                map.put("student_id",std_id.getText().toString());
+                map.put("name",std_name.getText().toString());
+                map.put("email",std_email.getText().toString());
+                map.put("phone",std_phone.getText().toString());
+                return map;
+
+            }
+        };
+
+        RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+        queue.add(stringRequest);
+
+
+
+    }
+
+    private void deleteservercall() {
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, ApiUrl.DELETE_URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                Log.d("Abirresponse",response);
+
+                try
+                {
+                    JSONArray jsonArray = new JSONArray(response);
+                    JSONObject jsonObject = jsonArray.getJSONObject(0);
+                    String code = jsonObject.getString("code");
+                    String message = jsonObject.getString("message");
+                    Toast.makeText(StudentDetailsActivity.this, code+"\n\n"+message, Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(StudentDetailsActivity.this, MainActivity.class));
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -99,7 +193,7 @@ public class StudentDetailsActivity extends AppCompatActivity {
         RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
         queue.add(stringRequest);
 
-
-
     }
+
+
 }

@@ -32,11 +32,83 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <Button
-        android:id="@+id/deletebutton"
-        android:layout_width="100dp"
-        android:text="DELETE"
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:weightSum="2"
         android:layout_marginTop="10dp"
-        android:layout_height="40dp" />
+        android:layout_height="wrap_content">
+
+
+        <Button
+            android:id="@+id/showupdate"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="Update"
+            android:layout_height="40dp" />
+
+
+        <Button
+            android:id="@+id/deletebutton"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="DELETE"
+            android:layout_height="40dp" />
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/linearlayout"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="5dp"
+        android:visibility="gone"
+        android:layout_height="wrap_content">
+
+
+        <EditText
+            android:id="@+id/student_id"
+            android:layout_width="match_parent"
+            android:hint="Enter student studentid"
+            android:layout_height="wrap_content" />
+
+
+        <EditText
+            android:id="@+id/student_name"
+            android:layout_width="match_parent"
+            android:hint="Enter Student Name"
+            android:layout_height="wrap_content" />
+
+
+        <EditText
+            android:id="@+id/student_email"
+            android:layout_width="match_parent"
+            android:hint="Enter Email"
+            android:inputType="textEmailAddress"
+            android:layout_height="wrap_content" />
+
+
+        <EditText
+            android:id="@+id/student_phone"
+            android:layout_width="match_parent"
+            android:hint="Enter Phone no"
+            android:inputType="phone"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:layout_width="150dp"
+            android:id="@+id/updatestudent"
+            android:text="UPDATE NOW"
+            android:layout_marginTop="30dp"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content" />
+
+
+    </LinearLayout>
+
+
 
 </LinearLayout>
