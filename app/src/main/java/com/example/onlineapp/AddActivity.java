@@ -47,7 +47,6 @@ public class AddActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 sendStudentDataToServer();
-
             }
         });
     }
